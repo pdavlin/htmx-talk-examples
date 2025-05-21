@@ -1,0 +1,72 @@
+---
+import "@styles/global.css";
+import DocumentHead from "../components/DocumentHead.astro";
+const description = "hx-indicator example";
+---
+
+<html lang="en">
+    <DocumentHead
+        title={description}
+        description={description}
+        permalink="http://localhost:4321/hx-indicator"
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>a wonderful {description}</h1>
+            <style>
+                .indicator {
+                    display: none;
+                }
+                .indicator.htmx-request {
+                    display: inline;
+                }
+                .data-container {
+                    margin-top: 1rem;
+                    padding: 1rem;
+                    background-color: #f5f5f5;
+                }
+                .spinner {
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    border: 3px solid rgba(0, 0, 0, 0.1);
+                    border-radius: 50%;
+                    border-top-color: #333;
+                    animation: spin 1s ease-in-out infinite;
+                    vertical-align: middle;
+                    margin-left: 0.5rem;
+                }
+                @keyframes spin {
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            </style>
+
+            <div class="flow">
+                <h2>HX-Indicator Example</h2>
+                <p>
+                    Click the button below to fetch data. The indicator will
+                    show while the request is in progress.
+                </p>
+
+                <button
+                    hx-get="/api/delayed-response"
+                    hx-target="#result"
+                    hx-swap="innerHTML"
+                    hx-indicator="#loading-indicator"
+                    class="primary"
+                >
+                    Fetch Data (3s delay)
+                </button>
+
+                <span id="loading-indicator" class="indicator">
+                    Loading... <div class="spinner"></div>
+                    <style></style>
+                </span>
+
+                <div id="result" class="data-container grad-wrapper flex"></div>
+            </div>
+        </main>
+    </body>
+</html>

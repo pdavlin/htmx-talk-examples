@@ -1,5 +1,25 @@
 ---
 export const partial = true;
+
+const greetings = [
+    "Hello",
+    "Hi",
+    "Hey there",
+    "Greetings",
+    "Welcome",
+    "Howdy",
+    "Salutations",
+    "Good day",
+    "Sup",
+    "Yo",
+    "Hola",
+    "Bonjour",
+    "Ciao",
+    "G'day",
+    "What's up",
+];
+
+const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 ---
 
-<div>Ahoy-hoy!</div>
+<div>{greeting}</div>

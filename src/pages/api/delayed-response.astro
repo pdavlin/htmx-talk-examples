@@ -1,0 +1,18 @@
+---
+// This is an API route that introduces a 3-second delay
+// before responding with some data
+
+// Wait for 3 seconds
+const delayPromise = () => new Promise((resolve) => setTimeout(resolve, 3000));
+await delayPromise();
+
+// Get current timestamp to show when the response was generated
+const timestamp = new Date().toLocaleTimeString();
+export const partial = true;
+---
+
+<div class="success-message">
+    <h3>Data loaded successfully!</h3>
+    <p>This response was delayed by 3 seconds on the server.</p>
+    <p>Response generated at: <strong>{timestamp}</strong></p>
+</div>

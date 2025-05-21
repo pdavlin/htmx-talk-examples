@@ -8,49 +8,54 @@ const description = "hx-trigger example";
     <DocumentHead
         title={description}
         description={description}
-        permalink="http://localhost:4321/htmx-greeting"
+        permalink="http://localhost:4321/hx-trigger"
     />
     <body>
         <main class="breakout flow">
             <h1>a wonderful {description}</h1>
-            <div>
-                <button
-                    hx-get="/api/greeting"
-                    hx-target="#greeting-message"
-                    hx-trigger="click"
-                >
-                    Say Hello
-                </button>
 
-                <button
-                    hx-get="/api/greeting?type=special"
-                    hx-target="#greeting-message"
-                    hx-trigger="mouseover"
-                >
-                    Hover for Special Greeting
-                </button>
+            <button
+                hx-get="/api/greeting"
+                hx-target="#greeting-message"
+                hx-trigger="click"
+            >
+                Say Hello
+            </button>
 
-                <div id="greeting-message" class="message-box">
-                    Your greeting will appear here...
-                </div>
+            <button
+                hx-get="/api/greeting?type=special"
+                hx-swap="innerHTML"
+                hx-trigger="mouseover"
+            >
+                Hover for special greeting
+            </button>
 
-                <div
-                    hx-get="/api/time"
-                    hx-target="#current-time"
-                    hx-trigger="every 1s"
-                >
-                    Current time: <span id="current-time">Loading...</span>
-                </div>
+            <!-- <button
+                hx-get="/api/greeting?type=special"
+                hx-swap="innerHTML"
+                hx-trigger="mouseover once"
+            >
+                Hover for exactly one Greeting
+            </button> -->
 
-                <style>
-                    .message-box {
-                        margin-top: 1rem;
-                        padding: 1rem;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                        min-height: 2rem;
-                    }
-                </style>
+            <!-- <button
+                hx-get="/api/greeting?type=special"
+                hx-swap="innerHTML"
+                hx-trigger="mouseover delay:1s"
+            >
+                Hover for Debounced greeting
+            </button> -->
+
+            <div id="greeting-message" class="grad-wrapper flex">
+                Your greeting will appear here...
+            </div>
+
+            <div
+                hx-get="/api/time"
+                hx-target="#current-time"
+                hx-trigger="every 1s"
+            >
+                Current time: <span id="current-time">Loading...</span>
             </div>
         </main>
     </body>
