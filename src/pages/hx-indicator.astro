@@ -23,7 +23,6 @@ const description = "hx-indicator example";
                 .data-container {
                     margin-top: 1rem;
                     padding: 1rem;
-                    background-color: #f5f5f5;
                 }
                 .spinner {
                     display: inline-block;
@@ -60,12 +59,17 @@ const description = "hx-indicator example";
                     Fetch Data (3s delay)
                 </button>
 
-                <span id="loading-indicator" class="indicator">
+                <!-- <span id="loading-indicator" class="indicator">
                     Loading... <div class="spinner"></div>
                     <style></style>
-                </span>
+                </span> -->
 
-                <div id="result" class="data-container grad-wrapper flex"></div>
+                <div id="result" class="data-container grad-wrapper flex">
+                    <span id="loading-indicator" class="indicator">
+                        Loading... <div class="spinner"></div>
+                        <style></style>
+                    </span>
+                </div>
             </div>
         </main>
     </body>
