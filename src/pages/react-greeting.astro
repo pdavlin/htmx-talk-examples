@@ -1,0 +1,22 @@
+---
+import "@styles/global.css";
+import DocumentHead from "@components/DocumentHead.astro";
+import GreetingLoader from "@components/react/GreetingLoader.jsx";
+---
+
+<html lang="en">
+    <DocumentHead
+        title="React Greeting Example"
+        description="A wonderful React greeting example"
+        permalink="http://localhost:4321/react-greeting"
+        excludeHtmx={true}
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>A wonderful React example</h1>
+            <div>
+                <GreetingLoader client:load />
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+---
+import "@styles/global.css";
+import DocumentHead from "../components/DocumentHead.astro";
+const description = "hx-trigger example";
+---
+
+<html lang="en">
+    <DocumentHead
+        title={description}
+        description={description}
+        permalink="http://localhost:4321/htmx-greeting"
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>a wonderful {description}</h1>
+            <div>
+                <button
+                    hx-get="/api/greeting"
+                    hx-target="#greeting-message"
+                    hx-trigger="click"
+                >
+                    Say Hello
+                </button>
+
+                <button
+                    hx-get="/api/greeting?type=special"
+                    hx-target="#greeting-message"
+                    hx-trigger="mouseover"
+                >
+                    Hover for Special Greeting
+                </button>
+
+                <div id="greeting-message" class="message-box">
+                    Your greeting will appear here...
+                </div>
+
+                <div
+                    hx-get="/api/time"
+                    hx-target="#current-time"
+                    hx-trigger="every 1s"
+                >
+                    Current time: <span id="current-time">Loading...</span>
+                </div>
+
+                <style>
+                    .message-box {
+                        margin-top: 1rem;
+                        padding: 1rem;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        min-height: 2rem;
+                    }
+                </style>
+            </div>
+        </main>
+    </body>
+</html>

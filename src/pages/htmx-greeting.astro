@@ -1,0 +1,30 @@
+---
+import "@styles/global.css";
+import DocumentHead from "../components/DocumentHead.astro";
+const description = "HTMX greeting example";
+---
+
+<html lang="en">
+    <DocumentHead
+        title={description}
+        description={description}
+        permalink="http://localhost:4321/htmx-greeting"
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>a wonderful {description}</h1>
+            <div>
+                <button
+                    hx-get="/api/greeting"
+                    hx-target="#greeting"
+                    class="primary"
+                >
+                    Load Greeting
+                </button>
+            </div>
+            <div class="grad-wrapper flex">
+                <div id="greeting"></div>
+            </div>
+        </main>
+    </body>
+</html>
