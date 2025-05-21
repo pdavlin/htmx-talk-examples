@@ -1,0 +1,27 @@
+---
+import "@styles/global.css";
+import DocumentHead from "@components/DocumentHead.astro";
+const description = "HTMX talk examples";
+---
+
+<html lang="en">
+    <DocumentHead
+        title="{description}"
+        description="{description}"
+        permalink="http://localhost:4321/htmx-greeting"
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>HTMX Talk</h1>
+            <h2>Example Pages</h2>
+            <ul>
+                <li><a href="/react-greeting">React Greeting</a></li>
+                <li><a href="/htmx-greeting">HTMX Greeting</a></li>
+                <li><a href="/hx-swap">HX Swap</a></li>
+                <li><a href="/hx-indicator">HX Indicator</a></li>
+                <li><a href="/hx-trigger">HX Trigger</a></li>
+                <li><a href="/contacts">Contacts</a></li>
+            </ul>
+        </main>
+    </body>
+</html>

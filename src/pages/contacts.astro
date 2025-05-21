@@ -1,0 +1,114 @@
+---
+import "@styles/global.css";
+import DocumentHead from "../components/DocumentHead.astro";
+import { getContacts } from "@lib/pocketbase";
+
+const q = Astro.url.searchParams.get("q");
+const page = +(Astro.url.searchParams.get("page") || "1");
+const limit = 10;
+const contacts = await getContacts({ q, limit, page });
+
+const is_search = Astro.request.headers.get("HX-Trigger") === "search";
+---
+<html lang="en">
+
+<DocumentHead title="contacts" description="contacts" permalink="http://localhost:4321/contacts" />
+<body>
+    <main class="breakout flow">
+
+
+{
+    is_search && (
+        <>
+            {contacts?.map((contact) => (
+                <tr>
+                    <td>{contact.first}</td>
+                    <td>{contact.last}</td>
+                    <td>{contact.phone}</td>
+                    <td>{contact.email}</td>
+                    <td>
+                        <a href={`/contacts/${contact.id}/edit`}>Edit</a>
+                        <a href={`/contacts/${contact.id}`}>View</a>
+                    </td>
+                </tr>
+            ))}
+            {contacts.length == 10 && (
+                <tr>
+                    <td colspan="5" style="text-align: center">
+                        <button
+                            hx-target="closest tr"
+                            hx-swap="outerHTML"
+                            hx-select="tbody > tr"
+                            hx-get={`/contacts?page=${page + 1}`}
+                        >
+                            Load More
+                        </button>
+                    </td>
+                </tr>
+            )}
+        </Do>
+    )
+}
+
+{
+    !is_search && (
+            <form action="/contacts" method="get" class="tool-bar">
+                <label for="search">Search Term</label>
+                <input
+                    id="search"
+                    type="search"
+                    name="q"
+                    value={q}
+                    hx-get="/contacts"
+                    hx-trigger="search, keyup delay:200ms changed"
+                    hx-target="tbody"
+                />
+                <button type="submit" value="Search" class="primary">Search</button>
+            </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th />
+                    </tr>
+                </thead>
+                <tbody>
+                    {contacts?.map((contact) => (
+                        <tr>
+                            <td>{contact.first}</td>
+                            <td>{contact.last}</td>
+                            <td>{contact.phone}</td>
+                            <td>{contact.email}</td>
+                            <td>
+                                <a href={`/contacts/${contact.id}/edit`} class="sp-r"><span>Edit</span></a>
+                                <a href={`/contacts/${contact.id}`}>View</a>
+                            </td>
+                        </tr>
+                    ))}
+                    {contacts.length == 10 && (
+                        <tr>
+                            <td colspan="5" style="text-align: center">
+                                <button
+                                    hx-target="closest tr"
+                                    hx-swap="outerHTML"
+                                    hx-select="tbody > tr"
+                                    hx-get={`/contacts?page=${page + 1}`}
+                                >
+                                    Load More
+                                </button>
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+            <p>
+                <a href="/contacts/new">Add Contact</a>
+            </p>
+    )
+}
+</main>
+</body>
+</html>

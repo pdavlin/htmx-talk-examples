@@ -1,0 +1,31 @@
+---
+import "@styles/global.css";
+import DocumentHead from "@components/DocumentHead.astro";
+import { getContact } from "@lib/pocketbase";
+
+const { contact_id } = Astro.params;
+const contact = await getContact(contact_id);
+---
+
+<html>
+    <DocumentHead
+        title={`Edit ${contact_id}`}
+        description="contacts"
+        permalink="http://localhost:4321/contacts/edit"
+    />
+    <body>
+        <main class="breakout flow">
+            <h1>{contact.first} {contact.last}</h1>
+
+            <div>
+                <div>Phone: {contact.phone}</div>
+                <div>Email: {contact.email}</div>
+            </div>
+
+            <p>
+                <a href={`/contacts/${contact.id}/edit`}>Edit</a>
+                <a href="/contacts">Back</a>
+            </p>
+        </main></body
+    >
+</html>

@@ -143,6 +143,26 @@ button:focus-visible {
     fill: var(--color-bg);
 }
 
+input[type="search"] {
+    line-height: 1.5rem;
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    height: 1.75rem;
+    padding: 0.1rem 0.5rem 0;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: var(--color-text);
+    border: 0.1rem solid var(--color-text);
+    border-radius: 0;
+    outline: 0;
+    background: white;
+    box-shadow: 2px 2px #bbb;
+    -webkit-appearance: none;
+    appearance: none;
+    font: inherit;
+}
+
 .grad-wrapper {
     background:
         radial-gradient(var(--base_06) 0.5px, transparent 1px) 0 0 / 3px 3px,
@@ -175,4 +195,12 @@ button:focus-visible {
     background-color: color-mix(in oklab, #4b8b8b 20%, white) !important;
     display: block !important;
     width: 100% !important;
+}
+
+a {
+    color: var(--color-text);
+}
+
+.sp-r {
+    margin-right: 0.5rem;
 }

@@ -19,8 +19,8 @@ function GreetingLoader() {
       <button onClick={loadGreeting} className="primary">
         Load Greeting
       </button>
-      <div className="grad-wrapper flex">
-        <div>{greeting}</div>
+      <div className="grad-wrapper flex" id="greeting">
+        {greeting.length > 0 ? <div>{greeting}</div> : undefined}
       </div>
     </div>
   );

@@ -20,15 +20,7 @@ const description = "hx-trigger example";
                 hx-trigger="click"
                 class="primary"
             >
-                Say Hello
-            </button>
-
-            <button
-                hx-get="/api/greeting?type=special"
-                hx-swap="innerHTML"
-                hx-trigger="mouseover"
-            >
-                Hover for special greeting
+                Click to greet
             </button>
 
             <div id="greeting-message" class="grad-wrapper flex">
@@ -44,7 +36,15 @@ const description = "hx-trigger example";
             </div>
 
             <button
-                hx-get="/api/greeting?type=special"
+                hx-get="/api/greeting"
+                hx-swap="innerHTML"
+                hx-trigger="mouseover"
+            >
+                Hover for special greeting
+            </button>
+
+            <!-- <button
+                hx-get="/api/greeting"
                 hx-swap="innerHTML"
                 hx-trigger="mouseover once"
             >
@@ -52,12 +52,12 @@ const description = "hx-trigger example";
             </button>
 
             <button
-                hx-get="/api/greeting?type=special"
+                hx-get="/api/greeting"
                 hx-swap="innerHTML"
                 hx-trigger="mouseover delay:1s"
             >
                 Hover for Debounced greeting
-            </button>
+            </button> -->
         </main>
     </body>
 </html>
